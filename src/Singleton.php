@@ -11,6 +11,16 @@ trait Singleton{
         return static::$instance;
     }
 
+    /**
+     * @return static
+     */
+    public static function instance_safe(): object{
+        if(!isset(static::$instance)){
+            static::_instantiate();
+        }
+        return static::$instance;
+    }
+
     public static function _instantiate(){
         $class = static::class;
         static::$instance = new $class;
